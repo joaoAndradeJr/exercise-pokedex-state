@@ -28,7 +28,7 @@ class Pokedex extends React.Component {
 		return (
 			<div className="pokedex">
 				<Pokemon pokemon={pokemons[position]} />
-				<button type="button" onClick={() => this.handleClick(pokemons.length)}>Next</button>
+				<button type="button" onClick={() => this.handleClick(pokemons.length)}>Próximo Pokémon</button>
 				
 			</div>
 		);

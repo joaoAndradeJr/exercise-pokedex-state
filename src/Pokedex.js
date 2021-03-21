@@ -7,9 +7,11 @@ class Pokedex extends React.Component {
 
 		this.state = {
 			position: 0,
+			type: 'Fire',
 		};
 
 		this.handleClick = this.handleClick.bind(this);
+		this.filter = this.filter.bind(this);
 	}
 
 	handleClick(arraySize) {
@@ -22,14 +24,20 @@ class Pokedex extends React.Component {
 		}
 	}
 
+	filter(event) {
+		this.setState({ type: event.target.name });
+	}
+
 	render() {
 		const position = this.state.position;
 		const pokemons = this.props.pokemons;
+		const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === this.state.type);
 		return (
 			<div className="pokedex">
-				<Pokemon pokemon={pokemons[position]} />
-				<button type="button" onClick={() => this.handleClick(pokemons.length)}>Próximo Pokémon</button>
-				
+				<Pokemon pokemon={filteredPokemons[position]} />
+				<button type="button" name="Fire" onClick={this.filter}>Fire</button>
+				<button type="button" name="Psychic" onClick={this.filter}>Psychic</button>
+				<button	type="button"	onClick={() => this.handleClick(filteredPokemons.length)}>Próximo Pokémon</button>
 			</div>
 		);
 	}
